@@ -1,0 +1,212 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Berlin Sans FB', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-image:url("images/background.png");
+}
+.card{
+    width: 100%;
+    max-width:800px;
+    background-image: url("images/background.png");
+    color: floralwhite;
+    margin:100px auto 0;
+    border-radiux:20px;
+    padding: 40px 35px;
+    text-align:center;
+    border-radius: 20%;
+}
+.search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    border: 0;
+    outline: 0;
+    background: aliceblue;
+    color: cadetblue;
+    padding: 20px 35px;
+    height: 70px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 40px;
+}
+.search button{
+    border: 0;
+    outline: 0;
+    background: aliceblue;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+.search button img{
+    width: 16px;
+}
+.add{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.add input{
+    border: 0;
+    outline: 0;
+    background: aliceblue;
+    color: cadetblue;
+    padding: 10px 25px;
+    height: 40px;
+    width: 350px;
+    flex: 1;
+    margin-right: 25px;
+    margin-left: 100px;
+    margin-top: 20px;
+    font-size: 25px;
+    justify-content: space-between;
+    border-radius: 30px;
+}
+.add button{
+    border: 0;
+    outline: 0;
+    background: aliceblue;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    float: right;
+    margin-top: -40px;
+    margin-left: 60px;
+}
+.add button img{
+    width: 16px;
+}
+.weather-icon{
+    width: 170px;
+    margin-top: 30px;
+}
+.weather-icon1{
+    width: 170px;
+    margin-top: -200px;
+    float: left;
+
+}
+.weather-icon2{
+    width: 170px;
+    margin-top: -200px;
+    float: right;
+}
+.weather h1{
+    font-size: 100px;
+    font-weight: 500;
+    margin-top: -10px;
+}
+.temp1 {
+    margin-top: 300px;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: left;
+}
+.city1{
+    margin-top: -20px;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: left;
+}
+.temp2{
+    margin-top: -50px;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: right;
+}
+.city2{
+    margin-top: -60px;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: right;
+}
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin-top: 50px;
+}
+col{
+    display:flex;
+    align-items: center;
+    text-align: left;
+}
+.col.img{
+    width: 40px;
+    margin-right: 10px;
+}
+.city{
+    font-size: 60px;
+    font-weight: 500;
+}
+.humidity, .wind{
+    font-size: 50px;
+    margin-top: -10px;
+}
+.error{
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    display: none;
+}
+.weather{
+    display: none;
+}
+.more_details_button button {
+    outline: 0;
+    border: 0;
+    bottom: 10px;
+    font-size: 20px;
+    background: aliceblue;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    background: floralwhite;
+    font-family: "Berlin Sans FB" ;
+    color: cadetblue;
+    margin-top: 30px;
+}
+.more_details{
+    display: none;
+}
+.more_details_button{
+    display: none;
+}
+.weather2cities{
+    display: none;
+}
+.lon_lat_icon{
+    margin-top: -150px;
+    width: 170px;
+    float: left;
+}
+.lat, .lon{
+    font-size: 35px;
+    font-family: "Berlin Sans FB";
+    color: floralwhite;
+    margin-left: -20px;
+    margin-top: 40px;
+}
+.visib, .pressure{
+    font-size: 35px;
+    font-family: "Berlin Sans FB";
+    text-align: left;
+    color: floralwhite;
+    margin-top: 20px;
+}
+.add{
+    display: none;
+}

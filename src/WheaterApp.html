@@ -1,0 +1,217 @@
+<html>
+<head>
+    <link rel = "stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+    <div class="search">
+        <input type="text" placeholder="Enter city name"
+        spellcheck="false">
+        <button><img src = "images\search.png"></button>
+    </div>
+
+    <div class="add">
+        <input type="text" placeholder="Compare with another city">
+        <button><img src = "images\add.png"></button>
+    </div>
+
+    <div class="error">
+        <p>Invalid city name</p>
+    </div>
+
+    <div class="weather">
+        <img src="images/rain.png" class = "weather-icon">
+        <h1 class="temp">2 &#176C</h1>
+        <h2 class="city">Cluj-Napoca</h2>
+        <div class="details">
+            <div class="col">
+                <img src="images/humidity.png">
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="images/wind.png">
+                <div>
+                    <p class="wind">5km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="weather2cities">
+        <img src="images/rain.png" class = "weather-icon1">
+        <img src="images/rain.png" class = "weather-icon2">
+        <h1 class="temp1">2&#176C</h1>
+        <h1 class="temp2">2&#176C</h1>
+        <h2 class="city1">Cluj-Napoca</h2>
+        <h2 class="city2">Cluj-Napoca</h2>
+    </div>
+
+    <div class="more_details_button">
+        <button>For more detalis click here:</button>
+    </div>
+
+    <div class="more_details">
+        <h1 class="visib"></h1>
+        <h1 class="pressure"></h1>
+        <h2 class="lat"></h2>
+        <h3 class="lon"></h3>
+        <img src="images/lon&lat.png" class = "lon_lat_icon">
+    </div>
+
+</div>
+
+<script>
+    const key = "35fa4b37f981497d31b2ef16ac93a10d";
+    const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    const searchBox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
+    const addBtn = document.querySelector(".add button");
+    const addBox = document.querySelector(".add input");
+    const weatherIcon1 = document.querySelector(".weather-icon1");
+    const weatherIcon2 = document.querySelector(".weather-icon2");
+    const detailsBtn = document.querySelector(".more_details_button button");
+
+    async function makeAPICall(city) {
+        const response = await fetch(URL + city + `&appid=${key}`);
+        if (response.status == 404) {
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+            document.querySelector(".more_details_button").style.display = "none";
+            document.querySelector(".add").style.display = "none";
+        } else {
+
+            document.querySelector(".error").style.display = "none";
+
+            var data = await response.json();
+            console.log(data);
+
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = data.main.temp + "&#176" + "C";
+            document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+            document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+            if (data.weather[0].main == "Clouds")
+                weatherIcon.src = "images/clouds.png";
+            else if (data.weather[0].main == "Rain")
+                weatherIcon.src = "images/rain.png";
+            else if (data.weather[0].main == "Clear")
+                weatherIcon.src = "images/clear.png";
+            else if (data.weather[0].main == "Drizzle")
+                weatherIcon.src = "images/drizzle.png";
+            else if (data.weather[0].main == "Mist")
+                weatherIcon.src = "images/mist.png";
+            else if (data.weather[0].main == "Snow")
+                weatherIcon.src = "images/snow.png";
+
+            document.querySelector(".weather").style.display = "block";
+        }
+    }
+
+    async function makeAPICall2(city1, city2) {
+        const response1 = await fetch(URL + city1 + `&appid=${key}`);
+        const response2 = await fetch(URL + city2 + `&appid=${key}`);
+
+        if (response1.status == 404 || response2.status == 404) {
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather2cities").style.display = "none";
+            document.querySelector(".more_details_button").style.display = "none";
+
+        } else {
+
+            document.querySelector(".error").style.display = "none";
+
+            var data1 = await response1.json();
+            var data2 = await response2.json();
+            console.log(data1);
+            console.log(data2);
+
+            document.querySelector(".city1").innerHTML = data1.name;
+            document.querySelector(".temp1").innerHTML = data1.main.temp + "&#176" + "C";
+            document.querySelector(".city2").innerHTML = data2.name;
+            document.querySelector(".temp2").innerHTML = data2.main.temp + "&#176" + "C";
+
+            if (data1.weather[0].main == "Clouds")
+                weatherIcon1.src = "images/clouds.png";
+            else if (data1.weather[0].main == "Rain")
+                weatherIcon1.src = "images/rain.png";
+            else if (data1.weather[0].main == "Clear")
+                weatherIcon1.src = "images/clear.png";
+            else if (data1.weather[0].main == "Drizzle")
+                weatherIcon1.src = "images/drizzle.png";
+            else if (data1.weather[0].main == "Mist")
+                weatherIcon1.src = "images/mist.png";
+            else if (data1.weather[0].main == "Snow")
+                weatherIcon1.src = "images/snow.png";
+
+            if (data2.weather[0].main == "Clouds")
+                weatherIcon2.src = "images/clouds.png";
+            else if (data2.weather[0].main == "Rain")
+                weatherIcon2.src = "images/rain.png";
+            else if (data2.weather[0].main == "Clear")
+                weatherIcon2.src = "images/clear.png";
+            else if (data2.weather[0].main == "Drizzle")
+                weatherIcon2.src = "images/drizzle.png";
+            else if (data2.weather[0].main == "Mist")
+                weatherIcon2.src = "images/mist.png";
+            else if (data2.weather[0].main == "Snow")
+                weatherIcon2.src = "images/snow.png";
+
+            document.querySelector(".weather2cities").style.display = "block";
+        }
+    }
+
+    async function makeAPICall3(city) {
+        const response = await fetch(URL + city + `&appid=${key}`);
+
+        if (response.status == 404) {
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".more_details").style.display = "none";
+            document.querySelector(".add").style.display = "none";
+        } else {
+
+            document.querySelector(".error").style.display = "none";
+
+            var data = await response.json();
+            console.log(data);
+
+            document.querySelector(".lat").innerHTML = "Latitude: " + data.coord.lat + "&#176";
+            document.querySelector(".lon").innerHTML = "Longitude: " + data.coord.lon +"&#176";
+            document.querySelector(".visib").innerHTML = "Visibility: " + data.visibility + " m";
+            document.querySelector(".pressure").innerHTML = "Pressure: " + data.main.pressure + " hPa";
+
+            document.querySelector(".more_details").style.display = "block";
+        }
+    }
+
+    searchBtn.addEventListener("click", ()=>{
+        makeAPICall(searchBox.value);
+        document.querySelector(".weather2cities").style.display = "none";
+        document.querySelector(".more_details").style.display = "none";
+        document.querySelector(".add").style.display = "block";
+        document.querySelector(".more_details_button").style.display = "block";
+    })
+
+    addBtn.addEventListener("click", ()=>{
+        makeAPICall2(searchBox.value, addBox.value);
+        document.querySelector(".weather").style.display = "none";
+        document.querySelector(".more_details").style.display = "none";
+        document.querySelector(".more_details_button").style.display = "none";
+    })
+
+    detailsBtn.addEventListener("click", ()=>{
+        makeAPICall3(searchBox.value);
+        document.querySelector(".weather").style.display = "none";
+        document.querySelector(".weather2cities").style.display = "none";
+        document.querySelector(".more_details_button").style.display = "none";
+        document.querySelector(".add").style.display = "none";
+    })
+</script>
+
+</body>
+</html>
